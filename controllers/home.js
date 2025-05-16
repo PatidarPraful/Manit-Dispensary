@@ -20,7 +20,7 @@ router.get('*', function(req, res, next){
 router.get('/',function(req,res){
     db.getAllDoc(function(err,result){
         db.getAllNewAppointments(function(err,result1){
-        db.getallappointment(function(err,result2){
+        db.getcomplain(function(err,result2){
             var total_doc = result.length ;
             var appointment = result1.length;
          

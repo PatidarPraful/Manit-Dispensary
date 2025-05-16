@@ -54,16 +54,38 @@ router.get('/add_doctor',function(req,res){
     
 });
 
-router.post('/add_doctor',upload.single("image"),function(req,res){
+router.post('/add_doctor', upload.single("image"), function(req, res) {
+    const {
+        first_name,
+        last_name,
+        email,
+        dob,
+        gender,
+        address,
+        phone,
+        department,
+        biography
+    } = req.body;
+
+    const image = req.file ? req.file.filename : null; // <-- safety check
+
+    db.add_doctor(first_name, last_name, email, dob, gender, address, phone, image, department, biography);
+
+    console.log('1 doctor inserted');
+    res.redirect('add_doctor');
+});
+
+
+// router.post('/add_doctor',upload.single("image"),function(req,res){
 
     
 
-        db.add_doctor(req.body.first_name,req.body.last_name,req.body.email,req.body.dob,req.body.gender,req.body.address,req.body.phone,req.file.filename,req.body.department,req.body.biography);
-    if(db.add_doctor){
-        console.log('1 doctor inserted');
-    }
-    res.redirect('add_doctor');
-    });
+//         db.add_doctor(req.body.first_name,req.body.last_name,req.body.email,req.body.dob,req.body.gender,req.body.address,req.body.phone,req.file.filename,req.body.department,req.body.biography);
+//     if(db.add_doctor){
+//         console.log('1 doctor inserted');
+//     }
+//     res.redirect('add_doctor');
+//     });
 
     router.get('/edit_doctor/:id',function(req,res){
         var id = req.params.id;
@@ -113,20 +135,7 @@ router.post('/delete_doctor/:id',function(req,res){
 
 
 
-//  router.get('/search',function(req,res){
-//      res.rende
-//      var key = req.body.search;
-//      console.log(key);
-//     db.searchDoc(key,function(err, rows, fields) {
-//         if (err) throw err;
-//       var data=[];
-//       for(i=0;i<rows.length;i++)
-//         {
-//           data.push(rows[i].first_name);
-//         }
-//         res.end(JSON.stringify(data));
-//       });
-//     });
+
 
 
     router.get('/',function(req,res){

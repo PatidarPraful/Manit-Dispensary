@@ -1,7 +1,7 @@
 var express = require ('express');
 var router = express.Router();
 var db = require.main.require ('./models/db_controller');
-var bodyPaser = require ('body-parser');
+
 
 router.get('*', function(req, res, next){
 	if(req.cookies['username'] == null){
@@ -68,11 +68,7 @@ router.post('/delete_appointment/:id',function(req,res){
 router.post('/addAppointment', function(req,res){
     db.createUpcomingAppointment(req.body.Pname, req.body.email, req.body.service, req.body.time, req.body.note,
         function(err,result){
-            if (err) {
-                console.error('❌ Error inserting appointment:', err);
-                return res.status(500).send('Database error while creating appointment.');
-              }
-          
+        
             res.redirect('/');
         }
     );

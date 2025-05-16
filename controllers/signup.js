@@ -18,7 +18,8 @@ router.use(bodyParser.json());
 
 router.post('/', [check('username').notEmpty().withMessage("username is required"),
     check('password').notEmpty().withMessage("password is required"),
-    check('email').notEmpty().withMessage("email is required")
+    check('email').notEmpty().withMessage("email is required").
+    isEmail().withMessage("Please enter a valid email address"),
 ],  function(req,res){
     const errors = validationResult(req);
     if(!errors.isEmpty()){
@@ -70,13 +71,13 @@ router.post('/', [check('username').notEmpty().withMessage("username is required
             port :465,
             secure :true,
             auth : {
-                user : "prafullpop30082003gmail.com",
-                pass : "Patidar@30"
+                user : "211112451@stu.manit.ac.in",
+                pass : "ohvrzbulwosezgxy"
             }
         });
 
         var mailOptions = {
-            from : 'Hms@gmail.com',
+            from : 'prafullpop30082003@gmail.com',
             to : email,
             subject : 'Email Verification',
             html : output

@@ -310,7 +310,7 @@
 					<div class="col-12 col-md-6 col-lg-8 col-xl-8">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title d-inline-block">New Patients Added </h4> <a href="patients.html" class="btn btn-primary float-right">View all</a>
+								<h4 class="card-title d-inline-block">Feedback</h4> 
 							</div>
 							<div class="card-block">
 								<div class="table-responsive">
@@ -360,13 +360,14 @@
                                             <tr>
                                               <td>
                                                 <img width="28" height="28" class="rounded-circle" src="/assets/img/user.jpg" alt=""> 
-                                                <h2><%= patient.patient_name %></h2>
+                                                <h2><%= patient.name %></h2>
                                               </td>
                                               <td><%= patient.email %></td>
-                                              <td><%= patient.doctor_name %></td>
+                                              <td><%= patient.message %></td>
+            
                                               <td>
                                                 <button class="btn btn-primary float-right">
-                                                  <%= patient.department %>
+                                                  <%= patient.subject %>
                                                 </button>
                                               </td>
                                             </tr>

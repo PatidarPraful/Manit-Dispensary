@@ -1,14 +1,17 @@
 var mysql = require('mysql');
 var express = require('express');
-var router = express.Router();
-var bodyParser = require('body-parser');
+require('dotenv').config();
+
 
 var con = mysql.createConnection({
-    host :'localhost',
-    user :'root',
-    password : '',
-    database : 'hmsystem'
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME
 })
+
+
 
 con.connect(function(err) {
     if (err) {
@@ -487,6 +490,7 @@ module.exports.postcomplain = function (
     "')";
   console.log(query);
   con.query(query, callback);
+  console.log("sucessfully done")
 };
 
 module.exports.getcomplain = function (callback) {
@@ -494,10 +498,6 @@ module.exports.getcomplain = function (callback) {
   con.query(query, callback);
 };
 
-module.exports.getcomplain = function (callback) {
-  var query = "select * from complain";
-  con.query(query, callback);
-};
 
 module.exports.checktoken = function (token, callback) {
   var query = "select *from temp where token='" + token + "'";

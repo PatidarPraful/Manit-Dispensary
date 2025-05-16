@@ -1,5 +1,4 @@
 var express = require ('express');
-var home = require('./home');
 var mysql =require('mysql');
 var session = require ('express-session');
 var router = express.Router();
